@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/employees")
@@ -30,7 +31,7 @@ public class EmplCont {
         }
     }
     @GetMapping("/tasks/{name}")
-    public List<Task> getTasksByName(@PathVariable("name") String name){
+    public Set<Task> getTasksByName(@PathVariable("name") String name){
         return empServ.gettasksbyname(name);
     }
 
@@ -45,7 +46,7 @@ public class EmplCont {
     }
 
     @GetMapping("/department/{name}")
-    public List<Employee> getEmployeesByDepartment(@PathVariable("name") String department) {
+    public Set<Employee> getEmployeesByDepartment(@PathVariable("name") String department) {
         return empServ.getbydepartment(department);
     }
 
@@ -54,5 +55,6 @@ public class EmplCont {
         empServ.delempbyname(name);
     }
 
-
+    @GetMapping("/names")
+    public List<Object[]>  getnames(){return empServ.getnames();}
 }

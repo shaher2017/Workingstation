@@ -11,18 +11,9 @@ public class TaskServ {
 
     @Autowired
     TaskRepo taskRepo;
-
-    public List<Task> getAllTasksWithEmployees() {
-        return taskRepo.findAll();
-    }
-
-    // Method to get all tasks with the assigned departments
-    public List<Task> getAllTasksWithDepartments() {
-        return taskRepo.findAll();
-    }
-
-    // Method to get all tasks
     public List<Task> getAllTasks() {
         return taskRepo.findAll();
     }
+    public void addtask(Task t){taskRepo.save(t);}
+    public void deletetask(long id){taskRepo.delete(taskRepo.findById(id).get());}
 }

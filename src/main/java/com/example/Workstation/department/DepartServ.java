@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class DepartServ {
@@ -15,10 +16,11 @@ public class DepartServ {
     public List<Department> getAllDepartments() {
         return departmentRepo.findAll();
     }
-    public List<Objects[]> getsumsalaryfordepartment(){return departmentRepo.findsumdepartments();}
+    public List<Object[]> getsumsalaryfordepartment(){return departmentRepo.findsumdepartments();}
 
-    public List<Objects []> getdepartmentwithmanagers(){
-       return departmentRepo.getdepartswithmanagers();
+    public Department getbyname(String s){
+        if(departmentRepo.findByname(s).isPresent())
+        return departmentRepo.findByname(s).get();
+        else return null;
     }
-
 }
